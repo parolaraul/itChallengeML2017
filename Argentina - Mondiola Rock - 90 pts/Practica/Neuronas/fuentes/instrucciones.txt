@@ -1,0 +1,35 @@
+Información basada en: https://github.com/cython/cython/wiki/64BitCythonExtensionsOnWindows
+
+Antes de poder compilar las extensiones basadas en Cython, se necesita instalar:
+    
+    1) El SDK de Microsoft Windows (no se necesita instalar soporte para .NET):
+       Descarga de Microsoft Windows SDK for Windows 7 and .NET Framework 4:
+       http://www.microsoft.com/en-us/download/details.aspx?id=8279
+
+    2) El intérprete de Python 3.X.
+	   Se recomienda usar Anaconda/Miniconda pués incluye todas las bibliotecas necesarias y además está disponible para Windows de 32 bits y de 64 bits.
+       NOTA: La versión de 32 bits funciona en todos los sistemas mientras que la de 64 bits requiere de un Windows de 64 bits.
+
+       Para poder compilar, es necesario instalar como mínimo NumPy y Cython. Esto se logra con:
+
+       > conda install numpy cython
+
+Para compilar la extensión (archivo de Cython con extensión .PYX) se utiliza un archivo denominado setup.py que no es más que un script de Python que sabe como compilarla.
+
+Para que dicho script encuentre todas las herramientas que necesita, deberá abrise una ventana de comandos y ejecutar:
+
+   Para un sistema de 64 bits:
+   > "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" /release /x64
+
+   Para un sistema de 32 bits:
+   > "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" /release /x86
+
+Luego, acceder a la carpeta donde se encuentra la extensión a compilar y ejecutar lo siguiente:
+
+> cd "ruta\a\la\carpeta\de\la\extensión"
+> set DISTUTILS_USE_SDK=1
+> python setup.py build_ext --inplace
+
+Una vez finalizado el proceso, si no hubo errores, se encontrará un archivo con extensión PYD que es el resultado de compilar el archivo PYX y que puede ser importado directamente desde Python como si fuera un módulo más.
+
+Para que funcione, el archivo PYD deberá estar en la ruta de búsqueda de Python, por lo que puede copiarse a la carpeta donde se está escribiendo el código (hay que hacerlo por cada proyecto) o copiarlo dentro de la carpeta "Lib\site-packages" dentro de la carpeta del intérprete de Python.

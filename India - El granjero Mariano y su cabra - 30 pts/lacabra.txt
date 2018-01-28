@@ -1,0 +1,21 @@
+Capacidad: 25185 proteínas 
+Naranjas incrementan: 109 proteínas 
+Bananas incrementan: 17188 proteínas
+
+Maximize
+
+OPC1 RTA 25145
+17188/2+(x*109)<=25185
+
+OPC2 RTA 25162
+x*109/2+17188<=25185
+
+OPC3 RTA 25162
+(17188+(x*109))/2+(y*109)<=25185
+
+OPC4 RTA 25162
+x*109/2+(y*109)+17188
+
+OPC5 RTA 25179 <-- esta
+x*109<=25185
+

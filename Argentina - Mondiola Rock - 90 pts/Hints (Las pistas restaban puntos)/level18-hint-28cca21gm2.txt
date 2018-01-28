@@ -1,0 +1,33 @@
+Si el input fuera el siguiente:
+4 9 2500
+AR0021 -34.603 -58.398 11862073 AR0019 AR0017
+AR0019 -38.0   -57.58  554916   AR0021
+AR0017 -32.951 -60.666 1094     AR0021 AR0020
+AR0020 -31.4   -64.182 1374468  AR0017
+
+Donde AR0021 corresponde a Buenos Aires, AR0019 a Mar del Plata, AR0017 a Rosario y AR0020 a Cordoba
+
+La respuesta sería: 119900613
+
+Ya que se podría partir de 
+AR0019 con una ganancia de 554916*9 = 4994244
+
+Luego viajar de AR0019 a AR0021 que estan separadas por: 384.77085 km, lo cual debe ser redondeado a 385km
+Y este camino tendra un costo de 385*2500 = 962500
+Por mas que en AR0021 se podria dar un recital, se decide proseguir camino a AR0017
+El viaje de AR0021 -> AR0017 tendra un costo de: 697500
+
+Estando en AR0017 no se puede dar el recital ya que se recaudarian 9846 y es menor que lo recaudado en AR0019
+Por lo tanto se continua viaje desde AR0017 a AR0020 con un costo de: 932500
+
+Estando en AR0020 se da el recital con una recaudacion de: 12370212
+
+Luego se decide retomar camino hacia AR0021 el cual consiste de estos tramos
+AR0020 -> AR0017 con costo: 932500
+AR0017 -> AR0021 con costo: 697500
+
+Y habiando llegado a AR0021 se da un recital con recaudacion de: 106758657
+
+Entonces se tiene esta ganancia total:
+
+4994244 - (962500+697500+932500) + 12370212 - (932500+697500) + 106758657 = 119900613
